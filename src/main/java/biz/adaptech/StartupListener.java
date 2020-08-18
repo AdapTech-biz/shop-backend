@@ -4,13 +4,12 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.boot.context.event.ApplicationStartingEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+/* Used to set up any configuration after bean creation */
 
 
 @Component
@@ -19,16 +18,7 @@ public class StartupListener implements ApplicationListener<ApplicationReadyEven
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
-        try {
-            InputStream serviceAccount = new FileInputStream("C:\\Users\\xyd93\\Documents\\Java\\adaptech-biz-shoeshop.json");
-            GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);
-            FirebaseOptions options = new FirebaseOptions.Builder()
-                    .setCredentials(credentials)
-                    .build();
-            FirebaseApp.initializeApp(options);
-        } catch (IOException exception) {
 
-        }
     }
 }
 
